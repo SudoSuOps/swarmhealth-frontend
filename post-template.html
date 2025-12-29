@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POST_TITLE - SwarmHealth Blog</title>
+    <meta name="description" content="POST_DESCRIPTION">
+    
+    <!-- SEO -->
+    <meta property="og:title" content="POST_TITLE - SwarmHealth">
+    <meta property="og:description" content="POST_DESCRIPTION">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://swarmhealth.io/blog/POST_SLUG">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --green-50: #f0fdf4;
+            --green-100: #dcfce7;
+            --green-500: #22c55e;
+            --green-600: #16a34a;
+            --green-700: #15803d;
+            --green-800: #166534;
+            --slate-100: #f1f5f9;
+            --slate-300: #cbd5e1;
+            --slate-500: #64748b;
+            --slate-600: #475569;
+            --slate-700: #334155;
+            --slate-800: #1e293b;
+            --slate-900: #0f172a;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Merriweather', Georgia, serif;
+            background: #fefefe;
+            color: var(--slate-800);
+            line-height: 1.8;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--green-100);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--green-700);
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--slate-600);
+            font-size: 0.9rem;
+        }
+        
+        .nav-links a:hover { color: var(--green-600); }
+        
+        .blog-header {
+            padding: 8rem 2rem 3rem;
+            text-align: center;
+            background: linear-gradient(180deg, var(--green-50) 0%, white 100%);
+        }
+        
+        .blog-category {
+            display: inline-block;
+            background: var(--green-100);
+            color: var(--green-700);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .blog-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--slate-900);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .blog-meta {
+            font-family: 'Inter', sans-serif;
+            color: var(--slate-500);
+            font-size: 0.9rem;
+        }
+        
+        article {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        
+        article p {
+            margin-bottom: 1.5rem;
+            font-size: 1.125rem;
+            color: var(--slate-700);
+        }
+        
+        article h2 {
+            font-size: 1.6rem;
+            margin: 2.5rem 0 1rem;
+            color: var(--slate-900);
+        }
+        
+        article h3 {
+            font-size: 1.3rem;
+            margin: 2rem 0 1rem;
+            color: var(--slate-800);
+        }
+        
+        article ul, article ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+        
+        article li {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            color: var(--slate-700);
+        }
+        
+        .callout {
+            background: var(--green-50);
+            border-left: 4px solid var(--green-500);
+            padding: 1.25rem 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+        }
+        
+        .callout p { margin-bottom: 0; color: var(--green-800); }
+        
+        .warning {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 1.25rem 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .warning p { margin-bottom: 0; color: #92400e; }
+        
+        /* Author Box */
+        .author-box {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            background: var(--slate-100);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 3rem 0;
+        }
+        
+        .author-avatar {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--green-500), var(--green-700));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            flex-shrink: 0;
+        }
+        
+        .author-info h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .author-info p {
+            font-size: 0.9rem;
+            color: var(--slate-600);
+            margin-bottom: 0;
+        }
+        
+        /* Share Box */
+        .share-box {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--slate-200);
+            margin-top: 2rem;
+        }
+        
+        .share-box p {
+            font-family: 'Inter', sans-serif;
+            color: var(--slate-600);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .share-buttons {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+        }
+        
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        
+        .share-btn.twitter { background: #1da1f2; color: white; }
+        .share-btn.facebook { background: #1877f2; color: white; }
+        .share-btn.reddit { background: #ff4500; color: white; }
+        .share-btn:hover { transform: translateY(-2px); }
+        
+        /* CTA */
+        .cta-section {
+            background: linear-gradient(135deg, var(--green-600), var(--green-700));
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        .cta-section h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .cta-section p {
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-btn {
+            display: inline-block;
+            background: white;
+            color: var(--green-700);
+            padding: 0.875rem 2rem;
+            border-radius: 9999px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .cta-btn:hover { transform: translateY(-2px); }
+        
+        footer {
+            background: var(--slate-900);
+            color: var(--slate-400);
+            padding: 2rem;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+        }
+        
+        footer a { color: var(--green-400); text-decoration: none; }
+        
+        @media (max-width: 768px) {
+            .blog-header h1 { font-size: 1.75rem; }
+            article { padding: 2rem 1rem; }
+            .author-box { flex-direction: column; text-align: center; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/" class="logo">💚 SwarmHealth</a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/chat">Talk to a Companion</a>
+            <a href="/blog">Blog</a>
+        </div>
+    </nav>
+    
+    <header class="blog-header">
+        <span class="blog-category">🩸 Living with Diabetes</span>
+        <h1>POST_TITLE</h1>
+        <div class="blog-meta">POST_DATE • POST_READ_TIME min read</div>
+    </header>
+    
+    <article>
+        <!-- 
+        ==============================================
+        WRITE YOUR POST HERE
+        ==============================================
+        
+        Tips:
+        - Use <p> for paragraphs
+        - Use <h2> for main sections
+        - Use <h3> for subsections
+        - Use <ul> or <ol> for lists
+        - Use <div class="callout"><p>...</p></div> for quotes/highlights
+        - Use <div class="warning"><p>...</p></div> for medical disclaimers
+        
+        ==============================================
+        -->
+        
+        <p>
+            Start writing here...
+        </p>
+        
+        <h2>Section Title</h2>
+        
+        <p>
+            More content...
+        </p>
+        
+        <div class="callout">
+            <p>"A quote or important point you want to highlight"</p>
+        </div>
+        
+        <div class="warning">
+            <p>⚠️ I'm not a doctor. This is my personal experience, not medical advice. Always consult your healthcare team.</p>
+        </div>
+        
+        <!-- Author Box -->
+        <div class="author-box">
+            <div class="author-avatar">🐝</div>
+            <div class="author-info">
+                <h4>Smash</h4>
+                <p>Father of 4. Married 30 years. T1D + Addison's. Building free AI health companions because no one should feel alone at 3am.</p>
+            </div>
+        </div>
+        
+        <!-- Share -->
+        <div class="share-box">
+            <p>Know someone who might need this?</p>
+            <div class="share-buttons">
+                <a href="https://twitter.com/intent/tweet?text=POST_TITLE&url=https://swarmhealth.io/blog/POST_SLUG" class="share-btn twitter" target="_blank">Share on X</a>
+                <a href="https://www.reddit.com/r/diabetes/submit?url=https://swarmhealth.io/blog/POST_SLUG&title=POST_TITLE" class="share-btn reddit" target="_blank">Share on Reddit</a>
+            </div>
+        </div>
+    </article>
+    
+    <section class="cta-section">
+        <h3>Need to Talk?</h3>
+        <p>The Diabetes Companion is free, private, and available 24/7.</p>
+        <a href="/chat" class="cta-btn">💬 Chat Now</a>
+    </section>
+    
+    <footer>
+        <p>Built with 💚 by those who live it. <a href="https://github.com/swarmhealth">Open source</a>.</p>
+    </footer>
+</body>
+</html>
