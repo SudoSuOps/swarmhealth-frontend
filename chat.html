@@ -392,12 +392,12 @@
         <div class="welcome-card">
             <h3>💚 Welcome</h3>
             <p>
-                I'm here to listen and support you through the daily challenges of diabetes. 
-                I was trained on conversations with real people living with diabetes, so I understand 
+                I'm here to listen and support you through the daily challenges of diabetes.
+                I've been trained to understand the emotional weight of managing diabetes —
                 the frustrations, the victories, and everything in between.
             </p>
             <p style="font-size: 0.8rem; color: var(--gray-500);">
-                I'm not a doctor and can't give medical advice. For medical concerns, please consult your healthcare team.
+                ⚠️ I'm not a doctor. I can't give medical advice or dosing recommendations. For emergencies, call 911. For medical concerns, consult your healthcare team.
             </p>
             <div class="welcome-prompts">
                 <button class="prompt-btn" onclick="sendPrompt('I had a rough night with my blood sugar')">Rough night with blood sugar</button>
@@ -508,12 +508,12 @@
                 console.error('Chat API error:', error);
                 hideTyping(typingId);
 
-                // Fallback response if API fails
+                // Fallback response if API fails (v3 style - direct, empathetic, not saccharine)
                 const fallbackResponses = [
-                    "I hear you. Managing diabetes is a lot of work, and it's okay to feel overwhelmed sometimes. What's been the hardest part lately?",
-                    "That sounds really frustrating. The constant attention diabetes requires can be exhausting. How are you taking care of yourself today?",
-                    "Thank you for sharing that with me. Diabetes burnout is real, and you're not alone in feeling this way. What would help you feel a little better right now?",
-                    "I understand. Some days are harder than others with diabetes. Remember that you're doing your best, and that's enough. What's one small win you've had recently?",
+                    "That constant vigilance is exhausting — the monitoring, the decisions, the mental load that never stops. What would help right now?",
+                    "Diabetes burnout is real. If it's becoming too much, something needs to change. What's been the hardest part lately?",
+                    "I hear you. The daily grind of diabetes management wears people down. You're not alone in feeling this way.",
+                    "Some days are harder than others. What's one thing that's been weighing on you most?",
                 ];
                 
                 const reply = fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
@@ -587,12 +587,12 @@
                 <div class="welcome-card">
                     <h3>💚 Welcome</h3>
                     <p>
-                        I'm here to listen and support you through the daily challenges of diabetes. 
-                        I was trained on conversations with real people living with diabetes, so I understand 
+                        I'm here to listen and support you through the daily challenges of diabetes.
+                        I've been trained to understand the emotional weight of managing diabetes —
                         the frustrations, the victories, and everything in between.
                     </p>
                     <p style="font-size: 0.8rem; color: var(--gray-500);">
-                        I'm not a doctor and can't give medical advice. For medical concerns, please consult your healthcare team.
+                        ⚠️ I'm not a doctor. I can't give medical advice or dosing recommendations. For emergencies, call 911. For medical concerns, consult your healthcare team.
                     </p>
                     <div class="welcome-prompts">
                         <button class="prompt-btn" onclick="sendPrompt('I had a rough night with my blood sugar')">Rough night with blood sugar</button>
@@ -605,7 +605,7 @@
         }
         
         function toggleInfo() {
-            alert('SwarmHealth Diabetes Companion v1.0\n\nTrained on 1,800 conversations with people living with diabetes.\n\nYour conversations are never stored.\n\nMIT Licensed • Open Source\n\ngithub.com/swarmhealth');
+            alert('SwarmHealth Diabetes Companion v3.0\n\nTwo-stage fine-tuned Qwen2.5-7B model:\n• Stage 1: Voice & Tone (1,204 examples)\n• Stage 2: Safety Hardening (304 examples)\n\nModel: huggingface.co/Trustcat/swarmhealth-diabetes-companion\n\nYour conversations are never stored.\n\nMIT Licensed • Open Source\n\ngithub.com/SudoSuOps/swarmhealth-frontend');
         }
         
         function escapeHtml(text) {
